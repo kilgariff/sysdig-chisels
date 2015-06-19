@@ -22,6 +22,10 @@ function on_init()
     -- set interval to 1 second
     chisel.set_interval_s(1)
 
+    -- open log file for writing
+    file = io.open("/opt/btdb/accept_rate.txt", "a")
+    io.output(file)
+
     return true
 end
 
@@ -33,7 +37,8 @@ end
 
 -- Interval callback
 function on_interval(ts_s, ts_ns, delta)
-    print(count)
+    io.write(count .. "\n")
+    io.flush()
     count = 0
     return true
 end
